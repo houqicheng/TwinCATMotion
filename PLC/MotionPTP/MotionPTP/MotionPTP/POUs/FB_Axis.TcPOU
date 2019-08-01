@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.16">
+  <POU Name="FB_Axis" Id="{a59f5d40-768d-47ee-b53a-dd3069670267}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Axis
+VAR_INPUT
+	//axis		:AXIS_REF;
+	
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR	
+	fbPower: MC_Power;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="PowerOn" Id="{92beff14-75f0-4a0e-843e-31ea1c1ea9ee}">
+      <Declaration><![CDATA[METHOD PowerOn : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbPower(
+	Axis:=GVL_General.Axis1 , 
+	Enable:= GVL_General.bPowerOn,
+	Enable_Positive:=TRUE , 
+	Enable_Negative:= TRUE, 
+	Override:= , 
+	BufferMode:= , 
+	Options:= ,
+	Status=> , 
+	Busy=> , 
+	Active=> , 
+	Error=> , 
+	ErrorID=> );]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_Axis">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Axis.PowerOn">
+      <LineId Id="6" Count="11" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

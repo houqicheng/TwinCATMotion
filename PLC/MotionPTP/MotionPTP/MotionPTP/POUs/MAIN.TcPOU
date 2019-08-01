@@ -7,10 +7,16 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[;]]></ST>
+      <ST><![CDATA[GVL_General.fbAxis();
+
+
+GVL_General.fbAxis.PowerOn();
+]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
       <LineId Id="2" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="7" Count="2" />
     </LineIds>
   </POU>
 </TcPlcObject>
