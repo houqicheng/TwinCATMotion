@@ -11,12 +11,17 @@ END_VAR
 
 
 GVL_General.fbAxis.PowerOn();
+
+//GVL_General.Axis1.NcToPlc.StateDWord.20;
 ]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
       <LineId Id="2" Count="0" />
       <LineId Id="10" Count="0" />
-      <LineId Id="7" Count="2" />
+      <LineId Id="7" Count="1" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="16" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
