@@ -5,7 +5,14 @@
 VAR_GLOBAL
 	Axis1		:AXIS_REF;
 	fbAxis		:FB_Axis;
-	bPowerOn	:BOOL;
+	
+	bPowrOn		:BOOL;
+	
+//----------------------HMI-----------------
+	hmiPowerOn	:BOOL;
+	hmiStop		:BOOL;
+//-----------------------HMI-----------------
+
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

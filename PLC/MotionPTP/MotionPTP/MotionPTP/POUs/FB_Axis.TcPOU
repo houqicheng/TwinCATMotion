@@ -10,6 +10,14 @@ VAR_OUTPUT
 END_VAR
 VAR	
 	fbPower: MC_Power;
+	
+	fbMoveVelocity: MC_MoveVelocity;
+	fbStop: MC_Stop;
+	fbMoveRelative: MC_MoveRelative;
+	fbHome: MC_Home;
+	fbJog: MC_Jog;
+	fbSetPosition: MC_SetPosition;
+	fbReset: MC_Reset;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -23,7 +31,7 @@ END_VAR
       <Implementation>
         <ST><![CDATA[fbPower(
 	Axis:=GVL_General.Axis1 , 
-	Enable:= GVL_General.bPowerOn,
+	Enable:= GVL_General.hmiPowerOn,
 	Enable_Positive:=TRUE , 
 	Enable_Negative:= TRUE, 
 	Override:= , 
@@ -36,11 +44,27 @@ END_VAR
 	ErrorID=> );]]></ST>
       </Implementation>
     </Method>
+    <Method Name="Stop" Id="{dca9ac4b-1634-402c-ba5f-1a82ebeae25b}">
+      <Declaration><![CDATA[METHOD Stop : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbStop(Axis:= GVL_General.Axis1,Execute:=GVL_General.hmiStop,Deceleration:= , 
+	Jerk:= ,Options:= ,Done=> ,Busy=> ,Active=> ,CommandAborted=> ,	Error=> , 
+	ErrorID=> );]]></ST>
+      </Implementation>
+    </Method>
     <LineIds Name="FB_Axis">
       <LineId Id="9" Count="0" />
     </LineIds>
     <LineIds Name="FB_Axis.PowerOn">
       <LineId Id="6" Count="11" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Axis.Stop">
+      <LineId Id="6" Count="0" />
+      <LineId Id="10" Count="0" />
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>

@@ -3,7 +3,6 @@ C:\Jack\2019git\TwinCATMotion\CS\HMI\HMI\bin\Debug\HMI.exe
 C:\Jack\2019git\TwinCATMotion\CS\HMI\HMI\bin\Debug\HMI.pdb
 C:\Jack\2019git\TwinCATMotion\CS\HMI\HMI\bin\Debug\TwinCAT.Ads.dll
 C:\Jack\2019git\TwinCATMotion\CS\HMI\HMI\bin\Debug\TwinCAT.Ads.xml
-C:\Jack\2019git\TwinCATMotion\CS\HMI\HMI\obj\Debug\HMI.csprojAssemblyReference.cache
 C:\Jack\2019git\TwinCATMotion\CS\HMI\HMI\obj\Debug\HMI.Form1.resources
 C:\Jack\2019git\TwinCATMotion\CS\HMI\HMI\obj\Debug\HMI.Properties.Resources.resources
 C:\Jack\2019git\TwinCATMotion\CS\HMI\HMI\obj\Debug\HMI.csproj.GenerateResource.cache
@@ -11,3 +10,4 @@ C:\Jack\2019git\TwinCATMotion\CS\HMI\HMI\obj\Debug\HMI.csproj.CoreCompileInputs.
 C:\Jack\2019git\TwinCATMotion\CS\HMI\HMI\obj\Debug\HMI.csproj.CopyComplete
 C:\Jack\2019git\TwinCATMotion\CS\HMI\HMI\obj\Debug\HMI.exe
 C:\Jack\2019git\TwinCATMotion\CS\HMI\HMI\obj\Debug\HMI.pdb
+C:\Jack\2019git\TwinCATMotion\CS\HMI\HMI\obj\Debug\HMI.csprojAssemblyReference.cache
