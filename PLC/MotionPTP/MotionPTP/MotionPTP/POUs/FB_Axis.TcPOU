@@ -18,11 +18,101 @@ VAR
 	fbJog: MC_Jog;
 	fbSetPosition: MC_SetPosition;
 	fbReset: MC_Reset;
+	rTrig: R_TRIG;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
+    <Method Name="Homing" Id="{302e2967-a8ba-422c-8075-e1851ec7ec2c}">
+      <Declaration><![CDATA[METHOD Homing : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+
+fbHome(Axis:=GVL_General.Axis1,Execute:=GVL_General.hmiHome,Position:=0,HomingMode:= ,BufferMode:= ,Options:= , 
+	bCalibrationCam:= GVL_General.hmiDummyHomeSensor,Done=> ,Busy=> ,Active=> ,CommandAborted=> ,Error=> ,ErrorID=> );]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Jog" Id="{cd9cb8e8-c9ef-46f7-b2ec-bfcf92861069}">
+      <Declaration><![CDATA[METHOD Jog : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbJog(
+	Axis:=GVL_General.Axis1 , 
+	JogForward:=GVL_General.hmiJogFor , 
+	JogBackwards:= GVL_General.hmiJogBack, 
+	Mode:= MC_JOGMODE_CONTINOUS, 
+	Position:= , 
+	Velocity:= 10, 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoveRelative" Id="{c12a4a6d-881b-4859-94ae-f1f3aaf868d7}">
+      <Declaration><![CDATA[METHOD MoveRelative : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[rTrig(CLK:= GVL_General.hmiMoveRelative, Q=> );
+
+fbMoveRelative(
+	Axis:= GVL_General.Axis1, 
+	Execute:=rTrig.Q , 
+	Distance:= 500, 
+	Velocity:= 30, 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	BufferMode:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoveVelocity" Id="{930bda21-b84d-4946-8e15-4869c71701d2}">
+      <Declaration><![CDATA[METHOD MoveVelocity : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbMoveVelocity(Axis:=GVL_General.Axis1, 
+	Execute:=GVL_General.hmiMoveVelo, 
+	Velocity:=30, 
+	Acceleration:=, 
+	Deceleration:= , 
+	Jerk:= , 
+	Direction:=MC_Direction.MC_Positive_Direction, 
+	BufferMode:= , 
+	Options:= , 
+	InVelocity=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+IF	GVL_General.hmiMoveVelo THEN 
+	GVL_General.hmiMoveVelo := FALSE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="PowerOn" Id="{92beff14-75f0-4a0e-843e-31ea1c1ea9ee}">
       <Declaration><![CDATA[METHOD PowerOn : BOOL
 VAR_INPUT
@@ -44,28 +134,83 @@ END_VAR
 	ErrorID=> );]]></ST>
       </Implementation>
     </Method>
+    <Method Name="SetPosition" Id="{9793fa26-1f62-4a9f-af72-810ad970373d}">
+      <Declaration><![CDATA[METHOD SetPosition : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbSetPosition(
+	Axis:=GVL_General.Axis1, 
+	Execute:=GVL_General.hmiSetPosition, 
+	Position:=0, 
+	Mode:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+	
+IF	GVL_General.hmiSetposition THEN 
+	GVL_General.hmiSetposition := FALSE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="Stop" Id="{dca9ac4b-1634-402c-ba5f-1a82ebeae25b}">
       <Declaration><![CDATA[METHOD Stop : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[fbStop(Axis:= GVL_General.Axis1,Execute:=GVL_General.hmiStop,Deceleration:= , 
+        <ST><![CDATA[rTrig(CLK:=GVL_General.hmiStop , Q=> );
+fbStop(Axis:= GVL_General.Axis1,Execute:=rTrig.Q,Deceleration:= , 
 	Jerk:= ,Options:= ,Done=> ,Busy=> ,Active=> ,CommandAborted=> ,	Error=> , 
-	ErrorID=> );]]></ST>
+	ErrorID=> );
+	
+IF GVL_General.hmiStop  THEN 
+	GVL_General.hmiStop	:= FALSE;
+END_IF]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="FB_Axis">
       <LineId Id="9" Count="0" />
     </LineIds>
+    <LineIds Name="FB_Axis.Homing">
+      <LineId Id="14" Count="1" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="13" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Axis.Jog">
+      <LineId Id="6" Count="14" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Axis.MoveRelative">
+      <LineId Id="21" Count="1" />
+      <LineId Id="6" Count="14" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Axis.MoveVelocity">
+      <LineId Id="6" Count="0" />
+      <LineId Id="8" Count="12" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="21" Count="3" />
+    </LineIds>
     <LineIds Name="FB_Axis.PowerOn">
       <LineId Id="6" Count="11" />
       <LineId Id="5" Count="0" />
     </LineIds>
+    <LineIds Name="FB_Axis.SetPosition">
+      <LineId Id="6" Count="8" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="15" Count="2" />
+    </LineIds>
     <LineIds Name="FB_Axis.Stop">
+      <LineId Id="14" Count="0" />
       <LineId Id="6" Count="0" />
       <LineId Id="10" Count="0" />
       <LineId Id="5" Count="0" />
+      <LineId Id="15" Count="3" />
     </LineIds>
   </POU>
 </TcPlcObject>

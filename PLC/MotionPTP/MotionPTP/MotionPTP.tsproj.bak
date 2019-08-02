@@ -1420,6 +1420,7 @@ External Setpoint Generation:
 					<Drive Name="Drive" DrvType="5">
 						<DrvPara>
 							<Analog ScaleFactorActTorque="0.1"/>
+							<TimeComp TaskDelayCycles="1"/>
 						</DrvPara>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
@@ -1575,7 +1576,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{65CFC72F-85A8-4933-8A4C-094E36848D56}" Name="MotionPTP" PrjFilePath="MotionPTP\MotionPTP.plcproj" TmcFilePath="MotionPTP\MotionPTP.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="MotionPTP\MotionPTP.tmc">
 					<Name>MotionPTP Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">

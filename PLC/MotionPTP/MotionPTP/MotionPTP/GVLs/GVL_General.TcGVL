@@ -11,6 +11,14 @@ VAR_GLOBAL
 //----------------------HMI-----------------
 	hmiPowerOn	:BOOL;
 	hmiStop		:BOOL;
+	hmiMoveVelo		:BOOL;
+	hmiHome			:BOOL;
+	hmiDummyHomeSensor		:BOOL;
+	hmiSetPosition			:BOOL;
+	hmiMoveRelative			:BOOL;
+	hmiLActPos				:LREAL;
+	hmiJogFor				:BOOL;
+	hmiJogBack				:BOOL;
 //-----------------------HMI-----------------
 
 END_VAR]]></Declaration>

@@ -29,15 +29,26 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.BtnStop = new System.Windows.Forms.Button();
+            this.BtnPowerStatus = new System.Windows.Forms.Button();
             this.btnPowerOff = new System.Windows.Forms.Button();
             this.btnPowerOn = new System.Windows.Forms.Button();
-            this.BtnPowerStatus = new System.Windows.Forms.Button();
-            this.BtnStop = new System.Windows.Forms.Button();
+            this.BtnMoveVelo = new System.Windows.Forms.Button();
+            this.txtActPos = new System.Windows.Forms.TextBox();
+            this.BtnSetPosition = new System.Windows.Forms.Button();
+            this.BtnJogFor = new System.Windows.Forms.Button();
+            this.BtnJogBack = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.groupBox1.Controls.Add(this.BtnJogBack);
+            this.groupBox1.Controls.Add(this.BtnJogFor);
+            this.groupBox1.Controls.Add(this.BtnSetPosition);
+            this.groupBox1.Controls.Add(this.txtActPos);
+            this.groupBox1.Controls.Add(this.BtnMoveVelo);
             this.groupBox1.Controls.Add(this.BtnStop);
             this.groupBox1.Controls.Add(this.BtnPowerStatus);
             this.groupBox1.Controls.Add(this.btnPowerOff);
@@ -48,6 +59,26 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // BtnStop
+            // 
+            this.BtnStop.Location = new System.Drawing.Point(6, 74);
+            this.BtnStop.Name = "BtnStop";
+            this.BtnStop.Size = new System.Drawing.Size(126, 35);
+            this.BtnStop.TabIndex = 4;
+            this.BtnStop.Text = "AxisStop";
+            this.BtnStop.UseVisualStyleBackColor = true;
+            this.BtnStop.Click += new System.EventHandler(this.BtnStop_Click);
+            // 
+            // BtnPowerStatus
+            // 
+            this.BtnPowerStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnPowerStatus.Location = new System.Drawing.Point(282, 17);
+            this.BtnPowerStatus.Name = "BtnPowerStatus";
+            this.BtnPowerStatus.Size = new System.Drawing.Size(165, 43);
+            this.BtnPowerStatus.TabIndex = 3;
+            this.BtnPowerStatus.Text = "PowerStatus";
+            this.BtnPowerStatus.UseVisualStyleBackColor = true;
             // 
             // btnPowerOff
             // 
@@ -69,25 +100,51 @@
             this.btnPowerOn.UseVisualStyleBackColor = true;
             this.btnPowerOn.Click += new System.EventHandler(this.btnPowerOn_Click);
             // 
-            // BtnPowerStatus
+            // BtnMoveVelo
             // 
-            this.BtnPowerStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnPowerStatus.Location = new System.Drawing.Point(282, 17);
-            this.BtnPowerStatus.Name = "BtnPowerStatus";
-            this.BtnPowerStatus.Size = new System.Drawing.Size(165, 43);
-            this.BtnPowerStatus.TabIndex = 3;
-            this.BtnPowerStatus.Text = "PowerStatus";
-            this.BtnPowerStatus.UseVisualStyleBackColor = true;
+            this.BtnMoveVelo.Location = new System.Drawing.Point(138, 74);
+            this.BtnMoveVelo.Name = "BtnMoveVelo";
+            this.BtnMoveVelo.Size = new System.Drawing.Size(126, 35);
+            this.BtnMoveVelo.TabIndex = 5;
+            this.BtnMoveVelo.Text = "MoveVelocity";
+            this.BtnMoveVelo.UseVisualStyleBackColor = true;
+            this.BtnMoveVelo.Click += new System.EventHandler(this.button1_Click);
             // 
-            // BtnStop
+            // txtActPos
             // 
-            this.BtnStop.Location = new System.Drawing.Point(6, 74);
-            this.BtnStop.Name = "BtnStop";
-            this.BtnStop.Size = new System.Drawing.Size(126, 35);
-            this.BtnStop.TabIndex = 4;
-            this.BtnStop.Text = "AxisStop";
-            this.BtnStop.UseVisualStyleBackColor = true;
-            this.BtnStop.Click += new System.EventHandler(this.BtnStop_Click);
+            this.txtActPos.Location = new System.Drawing.Point(278, 80);
+            this.txtActPos.Name = "txtActPos";
+            this.txtActPos.Size = new System.Drawing.Size(164, 22);
+            this.txtActPos.TabIndex = 6;
+            // 
+            // BtnSetPosition
+            // 
+            this.BtnSetPosition.Location = new System.Drawing.Point(6, 125);
+            this.BtnSetPosition.Name = "BtnSetPosition";
+            this.BtnSetPosition.Size = new System.Drawing.Size(126, 35);
+            this.BtnSetPosition.TabIndex = 7;
+            this.BtnSetPosition.Text = "SetPosition";
+            this.BtnSetPosition.UseVisualStyleBackColor = true;
+            this.BtnSetPosition.Click += new System.EventHandler(this.BtnSetPosition_Click);
+            // 
+            // BtnJogFor
+            // 
+            this.BtnJogFor.Location = new System.Drawing.Point(138, 125);
+            this.BtnJogFor.Name = "BtnJogFor";
+            this.BtnJogFor.Size = new System.Drawing.Size(126, 35);
+            this.BtnJogFor.TabIndex = 8;
+            this.BtnJogFor.Text = "JogFor";
+            this.BtnJogFor.UseVisualStyleBackColor = true;
+            this.BtnJogFor.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnJogFor_MouseDown);
+            // 
+            // BtnJogBack
+            // 
+            this.BtnJogBack.Location = new System.Drawing.Point(278, 125);
+            this.BtnJogBack.Name = "BtnJogBack";
+            this.BtnJogBack.Size = new System.Drawing.Size(126, 35);
+            this.BtnJogBack.TabIndex = 9;
+            this.BtnJogBack.Text = "JogBack";
+            this.BtnJogBack.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -100,6 +157,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -111,6 +169,11 @@
         private System.Windows.Forms.Button btnPowerOff;
         private System.Windows.Forms.Button BtnPowerStatus;
         private System.Windows.Forms.Button BtnStop;
+        private System.Windows.Forms.Button BtnMoveVelo;
+        private System.Windows.Forms.TextBox txtActPos;
+        private System.Windows.Forms.Button BtnSetPosition;
+        private System.Windows.Forms.Button BtnJogBack;
+        private System.Windows.Forms.Button BtnJogFor;
     }
 }
 

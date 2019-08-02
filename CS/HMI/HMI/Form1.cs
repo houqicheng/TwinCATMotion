@@ -18,7 +18,9 @@ namespace HMI
         int hPowerOn;
         int hPowerMonitor;
         int hStop;
+        int hMoveVelo;
         bool bPowerOn;
+        int hSetPosition;
 
         public Form1()
         {
@@ -27,6 +29,8 @@ namespace HMI
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            CheckForIllegalCrossThreadCalls = false;
+
             btnPowerOn.Enabled = true;
             btnPowerOff.Enabled = false;
             client = new TcAdsClient();
@@ -36,9 +40,11 @@ namespace HMI
                 hPowerOn =  client.CreateVariableHandle("GVL_General.hmiPowerOn");
                 hPowerMonitor = client.CreateVariableHandle("GVL_General.bPowrOn");
                 hStop = client.CreateVariableHandle("GVL_General.hmiStop");
+                hMoveVelo = client.CreateVariableHandle("GVL_General.hmiMoveVelo");
+                hSetPosition = client.CreateVariableHandle("GVL_General.hmiSetPosition");
 
                 client.AddDeviceNotificationEx("GVL_General.bPowrOn", AdsTransMode.OnChange, 100, 0, BtnPowerStatus, typeof(Boolean));
-
+                client.AddDeviceNotificationEx("GVL_General.hmiLActPos", AdsTransMode.OnChange, 100, 0, txtActPos, typeof(double));
                 client.AdsNotificationEx += Client_AdsNotificationEx;
                 
             }
@@ -54,6 +60,11 @@ namespace HMI
             {
                 bPowerOn = (Boolean)e.Value;
             }
+            else if (e.Value.GetType() == typeof(double))
+            {
+                ((TextBox)e.UserData).Text = e.Value.ToString();
+            }
+
             AxisPowerIndicatior();
         } 
         private void AxisPowerIndicatior()
@@ -120,6 +131,36 @@ namespace HMI
             {
                 MessageBox.Show("BtnStop_Click " + err.Message);
             }
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                client.WriteAny(hMoveVelo, true);
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("BtnMoveVelo " + err.Message);
+            }
+        }
+
+        private void BtnSetPosition_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                client.WriteAny(hSetPosition, true);
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("BtnSetPosition " + err.Message);
+            }
+        }
+
+        private void BtnJogFor_MouseDown(object sender, MouseEventArgs e)
+        {
+
 
         }
     }
