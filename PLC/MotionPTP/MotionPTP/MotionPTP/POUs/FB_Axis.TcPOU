@@ -66,13 +66,11 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[rTrig(CLK:= GVL_General.hmiMoveRelative, Q=> );
-
-fbMoveRelative(
+        <ST><![CDATA[fbMoveRelative(
 	Axis:= GVL_General.Axis1, 
-	Execute:=rTrig.Q , 
-	Distance:= 500, 
-	Velocity:= 30, 
+	Execute:=GVL_General.hmiMoveRelative, 
+	Distance:= 30, 
+	Velocity:= 1, 
 	Acceleration:= , 
 	Deceleration:= , 
 	Jerk:= , 
@@ -83,7 +81,11 @@ fbMoveRelative(
 	Active=> , 
 	CommandAborted=> , 
 	Error=> , 
-	ErrorID=> );]]></ST>
+	ErrorID=> );
+	
+IF GVL_General.hmiMoveRelative THEN 
+	GVL_General.hmiMoveRelative	:= FALSE;
+END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="MoveVelocity" Id="{930bda21-b84d-4946-8e15-4869c71701d2}">
@@ -94,7 +96,7 @@ END_VAR
       <Implementation>
         <ST><![CDATA[fbMoveVelocity(Axis:=GVL_General.Axis1, 
 	Execute:=GVL_General.hmiMoveVelo, 
-	Velocity:=30, 
+	Velocity:=500, 
 	Acceleration:=, 
 	Deceleration:= , 
 	Jerk:= , 
@@ -163,7 +165,8 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[rTrig(CLK:=GVL_General.hmiStop , Q=> );
-fbStop(Axis:= GVL_General.Axis1,Execute:=rTrig.Q,Deceleration:= , 
+
+fbStop(Axis:= GVL_General.Axis1,Execute:=rTrig.Q, Deceleration:= , 
 	Jerk:= ,Options:= ,Done=> ,Busy=> ,Active=> ,CommandAborted=> ,	Error=> , 
 	ErrorID=> );
 	
@@ -185,9 +188,9 @@ END_IF]]></ST>
       <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="FB_Axis.MoveRelative">
-      <LineId Id="21" Count="1" />
       <LineId Id="6" Count="14" />
       <LineId Id="5" Count="0" />
+      <LineId Id="26" Count="3" />
     </LineIds>
     <LineIds Name="FB_Axis.MoveVelocity">
       <LineId Id="6" Count="0" />
@@ -207,6 +210,7 @@ END_IF]]></ST>
     </LineIds>
     <LineIds Name="FB_Axis.Stop">
       <LineId Id="14" Count="0" />
+      <LineId Id="22" Count="0" />
       <LineId Id="6" Count="0" />
       <LineId Id="10" Count="0" />
       <LineId Id="5" Count="0" />

@@ -10,4 +10,3 @@ C:\Jack\2019git\TwinCATMotion\CS\HMI\HMI\obj\Debug\HMI.csproj.CoreCompileInputs.
 C:\Jack\2019git\TwinCATMotion\CS\HMI\HMI\obj\Debug\HMI.csproj.CopyComplete
 C:\Jack\2019git\TwinCATMotion\CS\HMI\HMI\obj\Debug\HMI.exe
 C:\Jack\2019git\TwinCATMotion\CS\HMI\HMI\obj\Debug\HMI.pdb
-C:\Jack\2019git\TwinCATMotion\CS\HMI\HMI\obj\Debug\HMI.csprojAssemblyReference.cache

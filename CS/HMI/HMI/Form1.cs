@@ -20,6 +20,7 @@ namespace HMI
         int hStop;
         int hMoveVelo;
         bool bPowerOn;
+        int hMoveRelative;
         int hSetPosition;
 
         public Form1()
@@ -42,6 +43,7 @@ namespace HMI
                 hStop = client.CreateVariableHandle("GVL_General.hmiStop");
                 hMoveVelo = client.CreateVariableHandle("GVL_General.hmiMoveVelo");
                 hSetPosition = client.CreateVariableHandle("GVL_General.hmiSetPosition");
+                hMoveRelative = client.CreateVariableHandle("GVL_General.hmiMoveRelative");
 
                 client.AddDeviceNotificationEx("GVL_General.bPowrOn", AdsTransMode.OnChange, 100, 0, BtnPowerStatus, typeof(Boolean));
                 client.AddDeviceNotificationEx("GVL_General.hmiLActPos", AdsTransMode.OnChange, 100, 0, txtActPos, typeof(double));
@@ -162,6 +164,23 @@ namespace HMI
         {
 
 
+        }
+
+        private void BtnJogBack_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnMoveRelative_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                client.WriteAny(hMoveRelative, true);
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("BtnMoveRelative " + err.Message);
+            }
         }
     }
 }

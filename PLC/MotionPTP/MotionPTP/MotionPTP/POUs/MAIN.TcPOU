@@ -17,8 +17,7 @@ GVL_General.fbAxis.Stop();
 
 IF GVL_General.bPowrOn THEN 
 	GVL_General.fbAxis.MoveVelocity();
-	GVL_General.fbAxis.MoveRelative();
-	
+	GVL_General.fbAxis.MoveRelative();	
 END_IF
 
 GVL_General.fbAxis.SetPosition();
@@ -40,7 +39,6 @@ GVL_General.hmiLActPos := GVL_General.Axis1.NcToPlc.ActPos;
       <LineId Id="21" Count="0" />
       <LineId Id="23" Count="0" />
       <LineId Id="32" Count="0" />
-      <LineId Id="25" Count="0" />
       <LineId Id="24" Count="0" />
       <LineId Id="31" Count="0" />
       <LineId Id="30" Count="0" />
