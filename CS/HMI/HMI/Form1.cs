@@ -22,6 +22,9 @@ namespace HMI
         bool bPowerOn;
         int hMoveRelative;
         int hSetPosition;
+        int hManualJog;
+        int hJogFor;
+        int hJogBack;
 
         public Form1()
         {
@@ -44,6 +47,9 @@ namespace HMI
                 hMoveVelo = client.CreateVariableHandle("GVL_General.hmiMoveVelo");
                 hSetPosition = client.CreateVariableHandle("GVL_General.hmiSetPosition");
                 hMoveRelative = client.CreateVariableHandle("GVL_General.hmiMoveRelative");
+                hManualJog = client.CreateVariableHandle("GVL_General.hmiManualJog");
+                hJogBack = client.CreateVariableHandle("GVL_General.hmiJogBack");
+                hJogFor = client.CreateVariableHandle("GVL_General.hmiJogFor");
 
                 client.AddDeviceNotificationEx("GVL_General.bPowrOn", AdsTransMode.OnChange, 100, 0, BtnPowerStatus, typeof(Boolean));
                 client.AddDeviceNotificationEx("GVL_General.hmiLActPos", AdsTransMode.OnChange, 100, 0, txtActPos, typeof(double));
@@ -54,6 +60,14 @@ namespace HMI
             {
                 MessageBox.Show("Form1_Load " + err.Message);                
             }
+            BtnJogBack.Enabled = false;
+            BtnJogFor.Enabled = false;
+            BtnStop.Enabled = false;
+            BtnMoveRelative.Enabled = false;
+            BtnSetPosition.Enabled = false;
+            BtnMoveVelo.Enabled = false;
+            BtnManual.Enabled = false;
+
         }
 
         private void Client_AdsNotificationEx(object sender, AdsNotificationExEventArgs e)
@@ -92,6 +106,11 @@ namespace HMI
                 client.WriteAny(hPowerOn, true);
                 btnPowerOn.Enabled = false;
                 btnPowerOff.Enabled = true;                
+                BtnStop.Enabled = true;
+                BtnMoveRelative.Enabled = true;
+                BtnSetPosition.Enabled = true;
+                BtnMoveVelo.Enabled = true;
+                BtnManual.Enabled = true;
             }
             catch (Exception err)
             {
@@ -110,9 +129,11 @@ namespace HMI
             try
             {
                 client.WriteAny(hPowerOn, false);
-                btnPowerOn.Enabled = true;
-                btnPowerOff.Enabled = false;                
+                client.WriteAny(hManualJog, false);
 
+                btnPowerOn.Enabled = true;
+                btnPowerOff.Enabled = false;
+                BtnManual.Enabled = false;
             }
             catch (Exception err)
             {
@@ -162,7 +183,14 @@ namespace HMI
 
         private void BtnJogFor_MouseDown(object sender, MouseEventArgs e)
         {
-
+            try
+            {
+                client.WriteAny(hJogFor, true);
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("BtnJogFor " + err.Message);
+            }
 
         }
 
@@ -180,6 +208,80 @@ namespace HMI
             catch (Exception err)
             {
                 MessageBox.Show("BtnMoveRelative " + err.Message);
+            }
+        }
+
+        private void BtnManual_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                client.WriteAny(hManualJog, true);
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("BtnBtnManual " + err.Message);
+            }
+            BtnJogBack.Enabled = true;
+            BtnJogFor.Enabled = true;
+        }
+
+        private void BtnJogBack_MouseDown(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                client.WriteAny(hJogBack, true);
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("BtnJogBack " + err.Message);
+            }
+        }
+
+        private void BtnJogBack_MouseLeave(object sender, EventArgs e)
+        {
+            //try
+            //{
+            //    client.WriteAny(hJogBack, false);
+            //}
+            //catch (Exception err)
+            //{
+            //    MessageBox.Show("BtnJogBack " + err.Message);
+            //}
+        }
+
+        private void BtnJogFor_MouseLeave(object sender, EventArgs e)
+        {
+            try
+            {
+                client.WriteAny(hJogFor, false);
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("BtnJogFor " + err.Message);
+            }
+        }
+
+        private void BtnJogFor_MouseUp(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                client.WriteAny(hJogFor, false);
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("BtnJogFor_MouseUp " + err.Message);
+            }
+        }
+
+        private void BtnJogBack_MouseUp(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                client.WriteAny(hJogBack, false);
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("BtnJogBack " + err.Message);
             }
         }
     }

@@ -19,6 +19,7 @@ VAR_GLOBAL
 	hmiLActPos				:LREAL;
 	hmiJogFor				:BOOL;
 	hmiJogBack				:BOOL;
+	hmiManualJog			:BOOL;
 //-----------------------HMI-----------------
 
 END_VAR]]></Declaration>

@@ -24,9 +24,12 @@ GVL_General.fbAxis.SetPosition();
 
 GVL_General.hmiLActPos := GVL_General.Axis1.NcToPlc.ActPos;
 
-//IF	GVL_General.hmiJogFor OR GVL_General.hmiJogBack THEN 
-	GVL_General.fbAxis.SetPosition();
-//END_IF
+GVL_General.fbAxis.SetPosition();
+
+IF GVL_General.bPowrOn AND GVL_General.hmiManualJog THEN 
+	GVL_General.fbAxis.Jog();	
+END_IF
+
 ]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
@@ -44,9 +47,12 @@ GVL_General.hmiLActPos := GVL_General.Axis1.NcToPlc.ActPos;
       <LineId Id="30" Count="0" />
       <LineId Id="29" Count="0" />
       <LineId Id="28" Count="0" />
-      <LineId Id="33" Count="0" />
       <LineId Id="16" Count="0" />
-      <LineId Id="34" Count="2" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="43" Count="1" />
+      <LineId Id="35" Count="1" />
     </LineIds>
   </POU>
 </TcPlcObject>

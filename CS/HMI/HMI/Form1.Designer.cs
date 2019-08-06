@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.BtnMoveRelative = new System.Windows.Forms.Button();
             this.BtnJogBack = new System.Windows.Forms.Button();
             this.BtnJogFor = new System.Windows.Forms.Button();
             this.BtnSetPosition = new System.Windows.Forms.Button();
@@ -38,16 +39,17 @@
             this.BtnPowerStatus = new System.Windows.Forms.Button();
             this.btnPowerOff = new System.Windows.Forms.Button();
             this.btnPowerOn = new System.Windows.Forms.Button();
-            this.BtnMoveRelative = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.BtnManual = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.BtnMoveRelative);
-            this.groupBox1.Controls.Add(this.BtnJogBack);
-            this.groupBox1.Controls.Add(this.BtnJogFor);
             this.groupBox1.Controls.Add(this.BtnSetPosition);
             this.groupBox1.Controls.Add(this.txtActPos);
             this.groupBox1.Controls.Add(this.BtnMoveVelo);
@@ -57,30 +59,45 @@
             this.groupBox1.Controls.Add(this.btnPowerOn);
             this.groupBox1.Location = new System.Drawing.Point(14, 9);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(856, 334);
+            this.groupBox1.Size = new System.Drawing.Size(463, 313);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
+            // BtnMoveRelative
+            // 
+            this.BtnMoveRelative.Location = new System.Drawing.Point(138, 125);
+            this.BtnMoveRelative.Name = "BtnMoveRelative";
+            this.BtnMoveRelative.Size = new System.Drawing.Size(126, 35);
+            this.BtnMoveRelative.TabIndex = 10;
+            this.BtnMoveRelative.Text = "MoveRelative";
+            this.BtnMoveRelative.UseVisualStyleBackColor = true;
+            this.BtnMoveRelative.Click += new System.EventHandler(this.BtnMoveRelative_Click);
+            // 
             // BtnJogBack
             // 
-            this.BtnJogBack.Location = new System.Drawing.Point(276, 125);
+            this.BtnJogBack.Location = new System.Drawing.Point(6, 74);
             this.BtnJogBack.Name = "BtnJogBack";
             this.BtnJogBack.Size = new System.Drawing.Size(126, 35);
             this.BtnJogBack.TabIndex = 9;
             this.BtnJogBack.Text = "JogBack";
             this.BtnJogBack.UseVisualStyleBackColor = true;
             this.BtnJogBack.Click += new System.EventHandler(this.BtnJogBack_Click);
+            this.BtnJogBack.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnJogBack_MouseDown);
+            this.BtnJogBack.MouseLeave += new System.EventHandler(this.BtnJogBack_MouseLeave);
+            this.BtnJogBack.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnJogBack_MouseUp);
             // 
             // BtnJogFor
             // 
-            this.BtnJogFor.Location = new System.Drawing.Point(138, 125);
+            this.BtnJogFor.Location = new System.Drawing.Point(138, 74);
             this.BtnJogFor.Name = "BtnJogFor";
             this.BtnJogFor.Size = new System.Drawing.Size(126, 35);
             this.BtnJogFor.TabIndex = 8;
             this.BtnJogFor.Text = "JogFor";
             this.BtnJogFor.UseVisualStyleBackColor = true;
             this.BtnJogFor.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnJogFor_MouseDown);
+            this.BtnJogFor.MouseLeave += new System.EventHandler(this.BtnJogFor_MouseLeave);
+            this.BtnJogFor.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnJogFor_MouseUp);
             // 
             // BtnSetPosition
             // 
@@ -94,7 +111,7 @@
             // 
             // txtActPos
             // 
-            this.txtActPos.Location = new System.Drawing.Point(644, 80);
+            this.txtActPos.Location = new System.Drawing.Point(280, 80);
             this.txtActPos.Name = "txtActPos";
             this.txtActPos.Size = new System.Drawing.Size(82, 22);
             this.txtActPos.TabIndex = 6;
@@ -122,7 +139,7 @@
             // BtnPowerStatus
             // 
             this.BtnPowerStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnPowerStatus.Location = new System.Drawing.Point(644, 17);
+            this.BtnPowerStatus.Location = new System.Drawing.Point(280, 17);
             this.BtnPowerStatus.Name = "BtnPowerStatus";
             this.BtnPowerStatus.Size = new System.Drawing.Size(165, 43);
             this.BtnPowerStatus.TabIndex = 3;
@@ -149,21 +166,34 @@
             this.btnPowerOn.UseVisualStyleBackColor = true;
             this.btnPowerOn.Click += new System.EventHandler(this.btnPowerOn_Click);
             // 
-            // BtnMoveRelative
+            // groupBox2
             // 
-            this.BtnMoveRelative.Location = new System.Drawing.Point(276, 74);
-            this.BtnMoveRelative.Name = "BtnMoveRelative";
-            this.BtnMoveRelative.Size = new System.Drawing.Size(126, 35);
-            this.BtnMoveRelative.TabIndex = 10;
-            this.BtnMoveRelative.Text = "MoveRelative";
-            this.BtnMoveRelative.UseVisualStyleBackColor = true;
-            this.BtnMoveRelative.Click += new System.EventHandler(this.BtnMoveRelative_Click);
+            this.groupBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.groupBox2.Controls.Add(this.BtnManual);
+            this.groupBox2.Controls.Add(this.BtnJogFor);
+            this.groupBox2.Controls.Add(this.BtnJogBack);
+            this.groupBox2.Location = new System.Drawing.Point(6, 176);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(285, 117);
+            this.groupBox2.TabIndex = 11;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Manual Control";
+            // 
+            // BtnManual
+            // 
+            this.BtnManual.Location = new System.Drawing.Point(6, 21);
+            this.BtnManual.Name = "BtnManual";
+            this.BtnManual.Size = new System.Drawing.Size(126, 35);
+            this.BtnManual.TabIndex = 10;
+            this.BtnManual.Text = "ManualMode";
+            this.BtnManual.UseVisualStyleBackColor = true;
+            this.BtnManual.Click += new System.EventHandler(this.BtnManual_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(964, 456);
+            this.ClientSize = new System.Drawing.Size(507, 341);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
             this.Text = "TwinCATMotion";
@@ -171,6 +201,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -188,6 +219,8 @@
         private System.Windows.Forms.Button BtnJogBack;
         private System.Windows.Forms.Button BtnJogFor;
         private System.Windows.Forms.Button BtnMoveRelative;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button BtnManual;
     }
 }
 
