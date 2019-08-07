@@ -22,6 +22,13 @@ VAR_GLOBAL
 	hmiManualJog			:BOOL;
 //-----------------------HMI-----------------
 
+//-----------------Log---------------------
+	fbLocalTime: FB_LocalSystemTime := (bEnable:= TRUE, dwCycle:= 1);
+	DateTimeNow		:STRING;
+
+
+//-----------------Log---------------------
+
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

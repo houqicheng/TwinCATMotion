@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.16">
+  <POU Name="F_TimeNow" Id="{d6d3adc2-e4a1-4220-80b1-5e9ccf54fff1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_TimeNow : STRING
+VAR_INPUT
+END_VAR
+VAR
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+//F_TimeNow := (GVL_General.DateTimeNow)]]></ST>
+    </Implementation>
+    <LineIds Name="F_TimeNow">
+      <LineId Id="10" Count="0" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

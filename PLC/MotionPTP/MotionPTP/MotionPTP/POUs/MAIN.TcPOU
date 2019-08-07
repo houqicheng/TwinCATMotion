@@ -8,6 +8,10 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[GVL_General.fbAxis();
+GVL_General.fbLocalTime();
+
+GVL_General.DateTimeNow := SYSTEMTIME_TO_STRING(GVL_General.fbLocalTime.systemTime);
+
 
 
 GVL_General.fbAxis.PowerOn();
@@ -34,7 +38,10 @@ END_IF
     </Implementation>
     <LineIds Name="MAIN">
       <LineId Id="2" Count="0" />
+      <LineId Id="59" Count="1" />
       <LineId Id="10" Count="0" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="57" Count="0" />
       <LineId Id="7" Count="2" />
       <LineId Id="26" Count="0" />
       <LineId Id="22" Count="0" />
