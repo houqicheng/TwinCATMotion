@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.16">
+  <POU Name="F_DateNow" Id="{f460680d-b61c-46b3-848a-8544b3c7f190}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_DateNow : STRING
+VAR_INPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[F_DateNow := LEFT(GVL_General.DateTimeNow,10);]]></ST>
+    </Implementation>
+    <LineIds Name="F_DateNow">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

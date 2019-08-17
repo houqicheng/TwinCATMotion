@@ -3,7 +3,7 @@
   <POU Name="MAIN" Id="{6b59d043-3d9d-40bc-ba8d-a42acc712532}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-	
+	str1 : STRING;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -12,8 +12,9 @@ GVL_General.fbLocalTime();
 
 GVL_General.DateTimeNow := SYSTEMTIME_TO_STRING(GVL_General.fbLocalTime.systemTime);
 
+str1:=   F_DateNow();
 
-
+//----------Axis---------------------
 GVL_General.fbAxis.PowerOn();
 GVL_General.bPowrOn :=  GVL_General.Axis1.NcToPlc.StateDWord.20;
 
@@ -33,13 +34,14 @@ GVL_General.fbAxis.SetPosition();
 IF GVL_General.bPowrOn AND GVL_General.hmiManualJog THEN 
 	GVL_General.fbAxis.Jog();	
 END_IF
-
+//----------Axis---------------------
 ]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
       <LineId Id="2" Count="0" />
       <LineId Id="59" Count="1" />
       <LineId Id="10" Count="0" />
+      <LineId Id="65" Count="0" />
       <LineId Id="58" Count="0" />
       <LineId Id="57" Count="0" />
       <LineId Id="7" Count="2" />

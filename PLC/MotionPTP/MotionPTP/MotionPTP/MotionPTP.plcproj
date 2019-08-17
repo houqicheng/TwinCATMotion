@@ -14,6 +14,9 @@
     <LibraryReferences>{ab226082-ddb2-4387-8bef-9935e24c42bb}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Function\F_DateNow.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Function\F_TimeNow.TcPOU">
       <SubType>Code</SubType>
     </Compile>
