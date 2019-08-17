@@ -5,6 +5,8 @@
 VAR
 	str1 : STRING;
 	bTest		:BOOL;
+	
+	rTrig: R_TRIG;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -16,12 +18,12 @@ GVL_General.DateTimeNow := SYSTEMTIME_TO_STRING(GVL_General.fbLocalTime.systemTi
 str1:=   F_DateNow();
 
 
-
-(*IF bTest THEN 
+rTrig(CLK:= bTest, Q=> );
+IF rTrig.Q THEN 
 	
 	F_Log('test my log function');
 	bTest := FALSE;
-END_IF   *)
+END_IF 
 P_MachineLog();
 
 (*

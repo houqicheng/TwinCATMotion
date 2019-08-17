@@ -19,7 +19,7 @@ END_VAR
 	0:
 		IF	GVL_General.LogBufferIndex >0 THEN 
 			iStep := 10;
-		ELSE
+		ELSIF bFileOpened=TRUE THEN 
 			iStep := 50;			
 		END_IF
 	10: (* check the file is open or not*)
@@ -29,14 +29,15 @@ END_VAR
 			iStep := 20; 
 		END_IF
 	11:		(* try to open the file*)
+		sFileName := CONCAT(STR1:= GVL_General.sFilePath,STR2:= F_DateNow());
+		sFileName := CONCAT(STR1:= sFileName,'.txt');
 		fbFileOpen(sNetId:= ,sPathName:= ,nMode:= ,ePath:= ,bExecute:= FALSE ,
 					tTimeout:=T#3S ,bBusy=> ,bError=> ,nErrId=> ,hFile=> );
 		IF NOT	fbFileOpen.bBusy AND NOT fbFileOpen.bError THEN 
 			iStep := 12;
 		END_IF
 	12:	(* open the file or create the file*)
-		sFileName := CONCAT(STR1:= GVL_General.sFilePath,STR2:= F_DateNow());
-		sFileName := CONCAT(STR1:= sFileName,'.txt');
+		
 		fbFileOpen(sNetId:= ,sPathName:= sFileName,nMode:= FOPEN_MODEAPPEND ,ePath:= PATH_GENERIC ,bExecute:= TRUE ,
 					tTimeout:=T#3S ,bBusy=> ,bError=> ,nErrId=> ,hFile=> hHandle);
 		IF NOT fbFileOpen.bBusy AND NOT fbFileOpen.bError THEN 
@@ -45,21 +46,24 @@ END_VAR
 		END_IF
 		
 	20: (* try to write to the log file*)
-		fbFilePuts(sNetId:= ,hFile:=hHandle ,sLine:=,bExecute:=FALSE,tTimeout:=T#3S,bBusy=> ,bError=> ,nErrId=> );
+		fbFilePuts(sNetId:= ,hFile:=hHandle ,sLine:=, bExecute:=FALSE,tTimeout:=T#3S,bBusy=> ,bError=> ,nErrId=> );
 		IF NOT fbFilePuts.bBusy AND NOT fbFilePuts.bError THEN 
 			iStep := 21;
 		END_IF
 	21:
 		fbFilePuts(sNetId:= ,hFile:=hHandle ,sLine:=GVL_General.LogBufferArray[1],bExecute:=TRUE,tTimeout:=T#3S,bBusy=> ,bError=> ,nErrId=> );
 		IF	NOT fbFilePuts.bBusy AND NOT fbFilePuts.bError THEN 
-			GVL_General.LogBufferIndex := GVL_General.LogBufferIndex -1;		//???
+			//GVL_General.LogBufferIndex := GVL_General.LogBufferIndex -1;		//???
 			iStep := 22;
 		END_IF
 	22:
-		IF	GVL_General.LogBufferIndex >1 THEN 
+		
 			FOR i := 1 TO GVL_General.LogBufferIndex - 1 DO
 				GVL_General.LogBufferArray[i] := GVL_General.LogBufferArray[i + 1];
 			END_FOR
+			GVL_General.LogBufferIndex := GVL_General.LogBufferIndex -1;		//???
+		IF	GVL_General.LogBufferIndex >1 THEN 
+			
 			iStep := 0;
 		ELSE 
 			iStep := 50;
@@ -76,11 +80,13 @@ END_VAR
 	51:
 		fbFileClose(sNetId:= ,hFile:=fbFileOpen.hFile,bExecute:=TRUE,tTimeout:=T#3S,bBusy=> ,bError=> ,nErrId=> );
 		
-		IF NOT fbFileClose.bBusy AND NOT fbFileClose.bError THEN 
-			bFileOpened := FALSE;
-			iStep := 0;
-		ELSE 
-			iStep := 999;
+		IF NOT fbFileClose.bBusy THEN 
+			IF NOT fbFileClose.bError THEN
+				bFileOpened := FALSE;
+				iStep := 0;
+			ELSE 
+				iStep := 999;
+			END_IF
 		END_IF
 	999:
 		;
@@ -95,10 +101,11 @@ END_CASE]]></ST>
       <LineId Id="39" Count="2" />
       <LineId Id="44" Count="1" />
       <LineId Id="42" Count="0" />
-      <LineId Id="46" Count="1" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="157" Count="1" />
+      <LineId Id="47" Count="0" />
       <LineId Id="57" Count="4" />
       <LineId Id="66" Count="0" />
-      <LineId Id="114" Count="0" />
       <LineId Id="64" Count="1" />
       <LineId Id="70" Count="0" />
       <LineId Id="125" Count="0" />
@@ -114,7 +121,11 @@ END_CASE]]></ST>
       <LineId Id="88" Count="2" />
       <LineId Id="92" Count="0" />
       <LineId Id="94" Count="0" />
-      <LineId Id="97" Count="4" />
+      <LineId Id="97" Count="1" />
+      <LineId Id="162" Count="0" />
+      <LineId Id="161" Count="0" />
+      <LineId Id="159" Count="0" />
+      <LineId Id="99" Count="2" />
       <LineId Id="95" Count="0" />
       <LineId Id="91" Count="0" />
       <LineId Id="14" Count="0" />
@@ -124,10 +135,7 @@ END_CASE]]></ST>
       <LineId Id="118" Count="0" />
       <LineId Id="33" Count="2" />
       <LineId Id="25" Count="0" />
-      <LineId Id="36" Count="0" />
-      <LineId Id="115" Count="0" />
-      <LineId Id="37" Count="0" />
-      <LineId Id="121" Count="1" />
+      <LineId Id="138" Count="6" />
       <LineId Id="38" Count="0" />
       <LineId Id="123" Count="1" />
       <LineId Id="13" Count="0" />

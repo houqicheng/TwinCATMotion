@@ -25,8 +25,9 @@ VAR_GLOBAL
 //-----------------Log---------------------
 	fbLocalTime: FB_LocalSystemTime := (bEnable:= TRUE, dwCycle:= 1);
 	DateTimeNow		:STRING;
-	LogBufferArray: ARRAY[1..10] OF STRING := ['a','b','c','d','e','f','g','7','9','10'];
-	LogBufferIndex	:INT:=1;
+	//LogBufferArray: ARRAY[1..10] OF STRING := ['a','b','c','d','e','f','g','7','9','10'];
+	LogBufferArray: ARRAY[1..10] OF STRING;
+	LogBufferIndex	:INT;
 	sFilePath		:STRING :='C:\TempSample\';
 	
 
