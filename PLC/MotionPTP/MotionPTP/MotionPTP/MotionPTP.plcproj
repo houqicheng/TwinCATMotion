@@ -17,6 +17,9 @@
     <Compile Include="Function\F_DateNow.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Function\F_Log.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Function\F_TimeNow.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -31,6 +34,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\P_MachineLog.TcPOU">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

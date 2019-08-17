@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.16">
+  <POU Name="F_Log" Id="{9a415fdc-fd5a-4695-bb1f-7978a429ab50}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_Log : bool
+VAR_INPUT
+	str1		:STRING;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[GVL_General.LogBufferIndex := GVL_General.LogBufferIndex + 1;
+
+GVL_General.LogBufferArray[GVL_General.LogBufferIndex] := str1;
+
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="F_Log">
+      <LineId Id="12" Count="1" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="10" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
