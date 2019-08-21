@@ -4,6 +4,8 @@ obj/
 
 # Other files and folders
 
+# User-specific files  
+*.suo 
 
 # Executables
 
