@@ -121,7 +121,10 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[fbPower(
+        <ST><![CDATA[
+F_Log('Axis Power On');
+
+fbPower(
 	Axis:=GVL_General.Axis1 , 
 	Enable:= GVL_General.hmiPowerOn,
 	Enable_Positive:=TRUE , 
@@ -133,7 +136,9 @@ END_VAR
 	Busy=> , 
 	Active=> , 
 	Error=> , 
-	ErrorID=> );]]></ST>
+	ErrorID=> );
+	
+	]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetPosition" Id="{9793fa26-1f62-4a9f-af72-810ad970373d}">
@@ -199,8 +204,10 @@ END_IF]]></ST>
       <LineId Id="21" Count="3" />
     </LineIds>
     <LineIds Name="FB_Axis.PowerOn">
+      <LineId Id="23" Count="2" />
       <LineId Id="6" Count="11" />
       <LineId Id="5" Count="0" />
+      <LineId Id="21" Count="1" />
     </LineIds>
     <LineIds Name="FB_Axis.SetPosition">
       <LineId Id="6" Count="8" />

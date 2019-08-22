@@ -10,7 +10,7 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//GVL_General.fbAxis();
+      <ST><![CDATA[GVL_General.fbAxis();
 GVL_General.fbLocalTime();
 
 GVL_General.DateTimeNow := SYSTEMTIME_TO_STRING(GVL_General.fbLocalTime.systemTime);
@@ -26,7 +26,7 @@ IF rTrig.Q THEN
 END_IF 
 P_MachineLog();
 
-(*
+
 //----------Axis---------------------
 GVL_General.fbAxis.PowerOn();
 GVL_General.bPowrOn :=  GVL_General.Axis1.NcToPlc.StateDWord.20;
@@ -47,7 +47,7 @@ GVL_General.fbAxis.SetPosition();
 IF GVL_General.bPowrOn AND GVL_General.hmiManualJog THEN 
 	GVL_General.fbAxis.Jog();	
 END_IF
-//----------Axis---------------------   *)
+//----------Axis---------------------   
 ]]></ST>
     </Implementation>
     <LineIds Name="MAIN">

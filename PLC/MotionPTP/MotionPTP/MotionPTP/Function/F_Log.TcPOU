@@ -11,6 +11,9 @@ END_VAR
     <Implementation>
       <ST><![CDATA[GVL_General.LogBufferIndex := GVL_General.LogBufferIndex + 1;
 
+str1 := CONCAT(STR1:= ':',STR2:= str1);
+str1 := CONCAT(STR1:= F_TimeNow(), STR2:= str1);
+
 GVL_General.LogBufferArray[GVL_General.LogBufferIndex] := str1;
 
 
@@ -18,6 +21,9 @@ GVL_General.LogBufferArray[GVL_General.LogBufferIndex] := str1;
     </Implementation>
     <LineIds Name="F_Log">
       <LineId Id="12" Count="1" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="21" Count="0" />
       <LineId Id="7" Count="0" />
       <LineId Id="9" Count="0" />
       <LineId Id="11" Count="0" />
