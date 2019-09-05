@@ -122,7 +122,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-F_Log('Axis Power On');
+//F_Log('Axis Power On');
 
 fbPower(
 	Axis:=GVL_General.Axis1 , 

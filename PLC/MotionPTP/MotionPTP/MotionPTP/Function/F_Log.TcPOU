@@ -6,24 +6,47 @@ VAR_INPUT
 	str1		:STRING;
 END_VAR
 VAR
+	rTrig:R_TRIG;
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[GVL_General.LogBufferIndex := GVL_General.LogBufferIndex + 1;
+      <ST><![CDATA[
+
+rTrig(CLK:= TRUE, Q=> );
+
+IF (rTrig.Q) THEN 
+	GVL_General.LogBufferIndex := GVL_General.LogBufferIndex + 1;
+
+	str1 := CONCAT(STR1:= ':',STR2:= str1);
+	str1 := CONCAT(STR1:= F_TimeNow(), STR2:= str1);
+	str1 := CONCAT(STR1:= str1,STR2 := '$n');
+
+	GVL_General.LogBufferArray[GVL_General.LogBufferIndex] := str1;
+	rTrig(CLK:= FALSE, Q=> );
+END_IF
+
+(*GVL_General.LogBufferIndex := GVL_General.LogBufferIndex + 1;
 
 str1 := CONCAT(STR1:= ':',STR2:= str1);
 str1 := CONCAT(STR1:= F_TimeNow(), STR2:= str1);
+str1 := CONCAT(STR1:= str1,STR2 := '$n');
 
-GVL_General.LogBufferArray[GVL_General.LogBufferIndex] := str1;
+GVL_General.LogBufferArray[GVL_General.LogBufferIndex] := str1;  *)
 
 
 ]]></ST>
     </Implementation>
     <LineIds Name="F_Log">
-      <LineId Id="12" Count="1" />
-      <LineId Id="20" Count="0" />
-      <LineId Id="22" Count="0" />
-      <LineId Id="21" Count="0" />
+      <LineId Id="30" Count="1" />
+      <LineId Id="35" Count="1" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="51" Count="5" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="45" Count="5" />
       <LineId Id="7" Count="0" />
       <LineId Id="9" Count="0" />
       <LineId Id="11" Count="0" />
